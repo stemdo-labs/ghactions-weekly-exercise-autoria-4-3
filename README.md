@@ -1,4 +1,4 @@
-## Ejercicios de ansible  para iniciarse en el Mundo de DevOps
+## Ejercicios de Github Actions  para iniciarse en el Mundo de DevOps
 
 ¡Bienvenido/a al ejercicio semanal de Github Actions para iniciarse en el mundo de DevOps!
 
