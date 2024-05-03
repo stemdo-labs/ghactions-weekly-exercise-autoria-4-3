@@ -16,6 +16,9 @@ jobs:
       - name: Obtener version de la aplicación
         id: version
         uses: ./.github/actions/
+
+      - name: Print version
+        run: echo "Version: ${{ steps.version.outputs.version }}"
         
       - name: Install dependencies
         run: npm install
