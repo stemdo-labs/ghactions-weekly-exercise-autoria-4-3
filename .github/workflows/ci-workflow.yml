@@ -16,6 +16,9 @@ jobs:
       - name: Obtener version de la aplicación
         id: version
         run: python ./.github/actions/get-version.py
+        
+      - name: Install dependencies
+        run: npm install
 
       - name: Construir aplicación de angular
         run: npm run build -- --prod
