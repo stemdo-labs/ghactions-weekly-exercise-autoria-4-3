@@ -1,12 +1,25 @@
 name: 'Obtener versión'
 description: 'Obtiene la versión de la aplicación desde un archivo de configuración'
-inputs: {}
+
+inputs:
+  env:  
+    description: 'In which environment must this be deployed'
+    required: true
+    default: 'uat'
+
 outputs:
   version:
     description: 'Versión de la aplicación'
+    value: ${{ steps.version_name.outputs.version }}
+
 runs:
   using: 'composite'
   steps:
-    - run: |
-        bash ./.github/actions/get-version.sh
+    - name: set version name
+      id: version_name
+      run:
+        output=$(bash ./.github/actions/get-version.sh ${{ vari }} )
+        echo "::set-output name=version::$output"
       shell: bash
+      
+  
