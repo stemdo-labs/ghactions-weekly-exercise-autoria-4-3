@@ -18,7 +18,7 @@ runs:
     - name: set version name
       id: version_name
       run:
-        output=$(bash ./.github/actions/get-version.sh ${{ vari }} )
+        output=$(bash ./.github/actions/get-version.sh ${{ version }} )
         echo "::set-output name=version::$output"
       shell: bash
       
