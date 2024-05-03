@@ -9,4 +9,5 @@ runs:
   steps:
     - run: |
         bash ./.github/actions/get-version.sh
+        echo ${{ version }}
       shell: bash
