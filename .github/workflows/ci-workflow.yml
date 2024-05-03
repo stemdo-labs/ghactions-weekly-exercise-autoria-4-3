@@ -16,6 +16,10 @@ jobs:
       - name: Obtener version de la aplicación
         id: version
         run: python ./.github/actions/get-version.py
+
+      - name: Mostrar version (prueba)
+        run: |
+          echo "Version: ${{ steps.version.outputs.stdout }}"
         
       - name: Install dependencies
         run: npm install
