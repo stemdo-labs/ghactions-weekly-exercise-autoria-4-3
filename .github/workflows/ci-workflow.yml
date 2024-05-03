@@ -28,8 +28,8 @@ jobs:
       - name: Construir imagen de Docker
         uses: docker/build-push-action@v2
         with:
-          username: ${{ UAT.DOCKERHUB_USERNAME }}
-          password: ${{ UAT.DOCKERHUB_TOKEN }}
+          username: ${{ env.DOCKERHUB_USERNAME }}
+          password: ${{ env.DOCKERHUB_TOKEN }}
           context: .
           file: ./Dockerfile
           push: true
