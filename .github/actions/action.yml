@@ -1,0 +1,13 @@
+name: 'Obtener versión'
+description: 'Obtiene la versión de la aplicación desde un archivo de configuración'
+inputs: {}
+outputs:
+  version:
+    description: 'Versión de la aplicación'
+    required: true
+runs:
+  using: 'composite'
+  steps:
+    - run: |
+        bash ./.github/actions/get-version.sh
+      shell: bash
