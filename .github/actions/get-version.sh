@@ -4,4 +4,4 @@
 version=$(jq -r '.version' package.json)
 
 # Establece la versión como salida de la acción
-echo "VERSION=$version" >> $GITHUB_ENV"
+echo "VERSION=$version" >> $GITHUB_ENV
