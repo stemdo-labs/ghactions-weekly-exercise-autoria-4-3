@@ -15,8 +15,7 @@ jobs:
 
       - name: Obtener version de la aplicación
         id: version
-        uses: ./.github/actions/get-version
-
+        uses: ./.github/actions/
         
       - name: Install dependencies
         run: npm install
