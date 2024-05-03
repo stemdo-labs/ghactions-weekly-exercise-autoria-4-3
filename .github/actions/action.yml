@@ -4,7 +4,6 @@ inputs: {}
 outputs:
   version:
     description: 'Versión de la aplicación'
-    required: true
 runs:
   using: 'composite'
   steps:
