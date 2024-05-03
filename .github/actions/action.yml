@@ -18,7 +18,9 @@ runs:
     - name: set version name
       id: version_name
       run:
-        output=$(bash ./.github/actions/get-version.sh ${{ vari }} )
+        output=$(bash ./.github/actions/get-version.sh)
+        if [ ${ env } == 'uat' ]; then
+          output+="_SNAPSHOT"
         echo "::set-output name=version::$output"
       shell: bash
       
