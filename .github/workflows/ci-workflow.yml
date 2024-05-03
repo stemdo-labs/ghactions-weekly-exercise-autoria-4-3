@@ -15,9 +15,8 @@ jobs:
 
       - name: Obtener version de la aplicación
         id: version
-        run: |
-          output=$(python ./.github/actions/get-version.py)
-          echo "::set-output name=version::$output"
+        uses: ./.github/actions/get-version
+
         
       - name: Install dependencies
         run: npm install
