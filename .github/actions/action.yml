@@ -1,26 +1,30 @@
 name: 'Obtener versión'
-description: 'Obtiene la versión de la aplicación desde un archivo de configuración'
 
-inputs:
-  env:  
-    description: 'In which environment must this be deployed'
-    required: true
-    default: 'uat'
+on:
+  workflow-call:
+    inputs:
+      env:  
+        description: 'In which environment must this be deployed'
+        required: true
+        default: 'uat'
+        type: string
 
-outputs:
-  version:
-    description: 'Versión de la aplicación'
-    value: ${{ steps.version_name.outputs.version }}
+    outputs:
+      version:
+        description: 'Versión de la aplicación'
+        value: ${{ steps.version_name.outputs.version }}
+        type: string
 
 runs:
   using: 'composite'
+  
   steps:
     - name: set version name
       id: version_name
       run:
         output=$(bash ./.github/actions/get-version.sh)
-        if [ ${ env } == 'uat' ]; then
-          output+="_SNAPSHOT"
+        if [ ${{ inputs.env }} == 'uat' ]; then
+          output+="-SNAPSHOT"
         echo "::set-output name=version::$output"
       shell: bash
       

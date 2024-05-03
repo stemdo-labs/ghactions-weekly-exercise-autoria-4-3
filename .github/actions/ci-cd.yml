@@ -1,14 +1,16 @@
 name: CI
-
 on:
-  push:
-    branches:
-      - dev
+  workflow-call:
+    inputs:
+      env:  
+        description: 'In which environment must this be deployed'
+        required: true
+        default: 'UAT'
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    environment: UAT
+    environment: ${{ inputs.env }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -24,10 +26,16 @@ jobs:
           echo "Version: ${{ steps.version.outputs.version }}"
         
       - name: Install dependencies
-        run: npm install
+        run: npm install 
 
       - name: Construir aplicación de angular
         run: npm run build --prod
+
+      - name: Hacer tests
+        run: |
+          if [ ${{ inputs.env }} == 'production' ]; then
+            sleep 5
+            echo "Test pasados adecuadamente"   
 
       - name: Login en Docker Hub
         uses: docker/login-action@v3
@@ -35,10 +43,23 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USER }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Construir imagen de Docker
+      - name: Construir imagen de Docker y subirla
         uses: docker/build-push-action@v3
         with:
           context: .
           file: ./Dockerfile
           push: true
-          tags: nachocasado/gh_entregable:${{ steps.version.outputs.version }}
+          tags: ${{ secrets.DOCKERHUB_USER }}/gh_entregable:${{ steps.version.outputs.version }}
+
+  deployment:
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.env }}
+    steps:
+
+      - name: download image
+        run: ${{ secrets.DOCKERHUB_USER }}/gh_entregable:${{ steps.version.outputs.version }}
+
+      - name: docker run
+
+      - name: curl
+        run: curl 
