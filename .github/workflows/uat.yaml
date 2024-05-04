@@ -13,9 +13,9 @@ jobs:
         id: version_name
         uses: ./.github/actions/
         with:
-          env: UAT     
+          env: "UAT"     
     
   call_workflow:
     uses: ./.github/workflows/ci-cd.yml
     with:
-      env: production
+      env: "production"
