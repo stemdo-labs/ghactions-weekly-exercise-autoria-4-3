@@ -19,7 +19,8 @@ jobs:
         with:
          env: production     
       
-      - name: ci-cd
-        uses: ./.github/workflows/ci-reusable.yml
-        with:
-          env: production  
+  call_workflow:
+    uses: ./.github/workflows/ci-reusable.yml
+    with:
+      env: 'production'
+    secrets: inherit
