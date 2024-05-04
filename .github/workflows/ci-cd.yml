@@ -7,14 +7,6 @@ on:
         description: 'Version Name'
         type: string
         required: true
-      docker_username:
-        description: 'Username'
-        type: string
-        default: 'patata'
-      docker_token:
-        description: 'token'
-        type: string
-        default: 'patata'
 
 jobs:
   build:
@@ -42,8 +34,13 @@ jobs:
       - name: Login en Docker Hub
         uses: docker/login-action@v3
         with:
-          username: ${{ github.event.inputs.docker_username }}
-          password: ${{ github.event.inputs.docker_token }}
+          username: ${{ secrets.DOCKERHUB_USER }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Test secrets de docker
+        run: |
+          echo ${{ secrets.DOCKERHUB_USER }}
+          echo ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Construir imagen de Docker y subirla
         uses: docker/build-push-action@v3
