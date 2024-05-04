@@ -35,9 +35,9 @@ jobs:
 
       - name: Hacer tests
         run: |
-          if [ ${{ inputs.env }} == 'production' ]; then
             sleep 5
             echo "Test pasados adecuadamente"   
+        if: ${{ inputs.env == 'production'}} 
 
       - name: Login en Docker Hub
         uses: docker/login-action@v3
