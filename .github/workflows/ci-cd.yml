@@ -12,7 +12,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    environment: UAT
+    environment: 
+      name: ${{ inputs.env }}
+      url: https://github.com
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -21,7 +23,7 @@ jobs:
         id: version
         uses: ./.github/actions/
         with:
-          env: UAT         
+          env: ${{ inputs.env }}        
 
       - name: Print version
         run: |
