@@ -31,3 +31,4 @@ runs:
           output+="-SNAPSHOT"
         fi
         echo "::set-output name=version::$output"
+      shell: bash  # Agrega esta línea para especificar el shell
