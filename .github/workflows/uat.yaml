@@ -3,13 +3,14 @@ on:
     branches: dev
 
 jobs:
-  build:
+  get_version:
     runs-on: ubuntu-latest
     environment: UAT
     outputs:
       version_name: ${{ steps.version.outputs.version_name }}
       docker_username: ${{ secrets.DOCKERHUB_USER }}
       docker_token: ${{ secrets.DOCKERHUB_TOKEN }}
+      environment: ${{ github.env }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -18,14 +19,14 @@ jobs:
         id: version
         uses: ./.github/actions/
         with:
-          env: "UAT"     
+          env: ${{ github.env }}     
     
   call_workflow:
-    needs: build
+    needs: get_version
     uses: ./.github/workflows/ci-cd.yml
     with:
-      version_name: ${{ needs.build.outputs.version_name}}
-      docker_username: ${{ needs.build.outputs.docker_username }}
-      docker_token: ${{ needs.build.outputs.docker_token }}
+      version_name: ${{ needs.get_version.outputs.version_name}}
+      docker_username: ${{ needs.get_version.outputs.docker_username }}
+      docker_token: ${{ needs.get_version.outputs.docker_token }}
       
 

@@ -10,11 +10,11 @@ on:
       docker_username:
         description: 'Username'
         type: string
-        required: true
+        default: 'patata'
       docker_token:
         description: 'token'
         type: string
-        required: true
+        default: 'patata'
 
 jobs:
   build:
