@@ -13,8 +13,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     environment: 
-      name: ${{ inputs.env }}
-      url: https://github.com
+      name: production
     steps:
       - name: Checkout
         uses: actions/checkout@v4
