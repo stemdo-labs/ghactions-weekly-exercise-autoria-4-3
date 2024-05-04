@@ -13,11 +13,9 @@ jobs:
         id: version_name
         uses: ./.github/actions/
         with:
-          env: 'UAT'     
-    
-      - name: build-image
-        uses: ./.github/actions/ci-cd.yml/action.yml
-        with:
-          env: 'UAT'    
+          env: 'UAT'
+          
+  call_workflow:
+    uses: stemdo-labs/ghactions-weekly-exercise-4-3/.github/actions/ci-cd.ym
     
 
