@@ -42,8 +42,8 @@ jobs:
       - name: Login en Docker Hub
         uses: docker/login-action@v3
         with:
-          username: '${{ secrets.DOCKERHUB_USER }}'
-          password: '${{ secrets.DOCKERHUB_TOKEN }}'
+          username: ${{ secrets.DOCKERHUB_USER }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Construir imagen de Docker y subirla
         uses: docker/build-push-action@v3
