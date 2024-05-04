@@ -11,12 +11,12 @@ jobs:
 
       - name: Obtener version de la aplicación
         id: version_name
-        uses: ./.github/actions/
+        uses: ./.github/actions/action.yml
         with:
           env: 'UAT'     
     
       - name: build-image
-        uses: ./.github/actions/ci-cd.yml/action.yml
+        uses: ./.github/actions/ci-cd.yml
         with:
           env: 'UAT'    
     
