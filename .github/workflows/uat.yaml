@@ -3,30 +3,19 @@ on:
     branches: dev
 
 jobs:
-  get_version:
+  build:
     runs-on: ubuntu-latest
-    environment: UAT
-    outputs:
-      version_name: ${{ steps.version.outputs.version_name }}
-      docker_username: ${{ secrets.DOCKERHUB_USER }}
-      docker_token: ${{ secrets.DOCKERHUB_TOKEN }}
-      environment: ${{ github.env }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
 
       - name: Obtener version de la aplicación
-        id: version
+        id: version_name
         uses: ./.github/actions/
         with:
-          env: ${{ github.env }} 
+          env: 'UAT'     
     
   call_workflow:
-    needs: get_version
     uses: ./.github/workflows/ci-cd.yml
     with:
-      version_name: ${{ needs.get_version.outputs.version_name }}
-      docker_username: ${{ secrets.DOCKERHUB_USER }}
-      docker_token: ${{ secrets.DOCKERHUB_TOKEN }}
-      
-
+      env: 'UAT'
