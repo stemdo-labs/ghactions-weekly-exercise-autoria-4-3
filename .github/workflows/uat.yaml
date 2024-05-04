@@ -16,7 +16,7 @@ jobs:
           env: 'UAT'     
     
       - name: build-image
-        uses: ./.github/actions/ci-cd.yml
+        uses: ./.github/actions/ci-cd.yml/action.yml
         with:
           env: 'UAT'    
     
