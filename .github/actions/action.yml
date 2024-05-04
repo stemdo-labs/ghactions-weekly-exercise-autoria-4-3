@@ -1,15 +1,13 @@
 name: 'Obtener versión'
 
-on:
-  workflow-call:
-    inputs:
+inputs:
       env:  
         description: 'In which environment must this be deployed'
         required: true
         default: 'uat'
         type: string
 
-    outputs:
+outputs:
       version:
         description: 'Versión de la aplicación'
         value: ${{ steps.version_name.outputs.version }}
