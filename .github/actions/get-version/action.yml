@@ -2,7 +2,7 @@ name: Obtener versión
 description: Da el nombre de la versión actual, con snapshot si es para dev
 
 inputs:
-  env:  
+  target:  
     description: 'In which environment must this be deployed'
     required: true
     default: UAT
@@ -22,7 +22,7 @@ runs:
       id: version_name
       run: |
         output=$(bash ./.github/actions/get-version/get-version.sh)
-        if [ "${{ inputs.env }}" == 'UAT' ]; then
+        if [ "${{ inputs.target }}" == "UAT" ]; then
           output="${output}-SNAPSHOT"
         fi
         echo "::set-output name=version::${output}"
