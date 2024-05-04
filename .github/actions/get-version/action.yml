@@ -21,7 +21,7 @@ runs:
     - name: set version name
       id: version_name
       run: |
-        output=$(bash ./.github/actions/get-version.sh)
+        output=$(bash ./.github/actions/get-version/get-version.sh)
         if [ "${{ inputs.env }}" == 'UAT' ]; then
           output+="-SNAPSHOT"
         fi
