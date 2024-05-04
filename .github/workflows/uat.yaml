@@ -26,7 +26,7 @@ jobs:
     uses: ./.github/workflows/ci-cd.yml
     with:
       version_name: ${{ needs.get_version.outputs.version_name}}
-      docker_username: ${{ needs.get_version.outputs.docker_username }}
-      docker_token: ${{ needs.get_version.outputs.docker_token }}
+      docker_username: ${{ secrets.DOCKERHUB_USER}}
+      docker_token: ${{ secrets.DOCKERHUB_TOKEN }}
       
 
