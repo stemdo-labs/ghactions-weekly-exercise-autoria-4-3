@@ -11,7 +11,7 @@ jobs:
 
       - name: Obtener version de la aplicación
         id: version
-        uses: ./.github/actions/get-version-action.yml
+        uses: ./.github/actions/
         with:
           env: 'UAT'     
     
