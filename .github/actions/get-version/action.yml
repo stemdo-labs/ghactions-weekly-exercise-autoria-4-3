@@ -23,7 +23,7 @@ runs:
       run: |
         output=$(bash ./.github/actions/get-version/get-version.sh)
         if [ "${{ inputs.env }}" == 'UAT' ]; then
-          output+="-SNAPSHOT"
+          output="${output}-SNAPSHOT"
         fi
-        echo "::set-output name=version::$output"
-      shell: bash  # Agrega esta línea para especificar el shell
+        echo "::set-output name=version::${output}"
+      shell: bash
