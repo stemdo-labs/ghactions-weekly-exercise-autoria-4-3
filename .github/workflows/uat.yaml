@@ -5,17 +5,21 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    environment: UAT
+    outputs:
+      version_name: ${{ steps.version.outputs.version_name }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
 
       - name: Obtener version de la aplicación
-        id: version_name
+        id: version
         uses: ./.github/actions/
         with:
           env: "UAT"     
     
   call_workflow:
+    needs: build
     uses: ./.github/workflows/ci-cd.yml
     with:
-      env: "production"
+      version_name: ${{ needs.build.outputs.version_name}}

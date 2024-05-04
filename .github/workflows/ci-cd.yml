@@ -3,29 +3,21 @@ name: CI-CD
 on:
   workflow_call:
     inputs:
-      env:  
-        description: 'In which environment must this be deployed'
-        required: true
-        default: UAT
+      version_name:
+        description: 'Version Name'
         type: string
+        required: true
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    environment: ${{ inputs.env }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Obtener version de la aplicación
-        id: version
-        uses: ./.github/actions/
-        with:
-          env: ${{ inputs.env }}        
+        uses: actions/checkout@v4     
 
       - name: Print version
         run: |
-          echo "Version: ${{ steps.version.outputs.version }}"
+          echo "Version: ${{ inputs.version_name }}"
         
       - name: Install dependencies
         run: npm install 
@@ -37,7 +29,7 @@ jobs:
         run: |
           sleep 5
           echo "Test pasados adecuadamente" 
-        if: ${{ inputs.env == 'production'}}  
+        if: ${{ github.env == 'production'}}  
 
       - name: Login en Docker Hub
         uses: docker/login-action@v3
@@ -51,18 +43,18 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USER }}/gh_entregable:${{ steps.version.outputs.version }}
+          tags: ${{ secrets.DOCKERHUB_USER }}/gh_entregable:${{ inputs.version_name }}
 
   deployment:
     runs-on: ubuntu-latest
-    environment: ${{ inputs.env }}
+    environment: ${{ inputs.version_name }}
     steps:
 
       - name: download image
-        run: ${{ secrets.DOCKERHUB_USER }}/gh_entregable:${{ steps.version.outputs.version }}
+        run: ${{ secrets.DOCKERHUB_USER }}/gh_entregable:${{ inputs.version_name  }}
 
       - name: docker run
-        run: docker run -d -p 8080:80 ${{ secrets.DOCKERHUB_USER }}/gh_entregable:${{ steps.version.outputs.version }}
+        run: docker run -d -p 8080:80 ${{ secrets.DOCKERHUB_USER }}/gh_entregable:${{ inputs.version_name  }}
 
       - name: curl
         run: curl http://localhost:8080
