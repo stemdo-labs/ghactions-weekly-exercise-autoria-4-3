@@ -19,6 +19,6 @@ jobs:
           env: 'production'     
       
       - name: ci-cd
-        uses: ./.github/actions/ci-cd.yml
+        uses: ./.github/workflows/ci-cd.yml
         with:
           env: 'production'  
