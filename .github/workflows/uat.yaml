@@ -15,7 +15,7 @@ jobs:
         with:
           env: 'UAT'
           
-  call_workflow:
+  workflow_call:
     uses: ./.github/workflows/ci-cd.yml
     
 
