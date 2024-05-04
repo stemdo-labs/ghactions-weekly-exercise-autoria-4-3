@@ -10,7 +10,6 @@ outputs:
       version:
         description: 'Versión de la aplicación'
         value: ${{ steps.version_name.outputs.version }}
-        type: string
 
 runs:
   using: 'composite'
