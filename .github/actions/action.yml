@@ -1,4 +1,4 @@
-name: 'Obtener versión'
+name: Obtener versión
 
 inputs:
       env:  
