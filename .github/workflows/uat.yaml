@@ -13,9 +13,11 @@ jobs:
         id: version_name
         uses: ./.github/actions/
         with:
-          env: 'UAT'     
-    
-  call_ci_cd_workflow:
-    name: Call CI/CD Workflow
-    uses: ./.github/workflows/ci-cd.yml
+          env: 'UAT'
+      - name: Call CI-CD Workflow
+        uses: ./.github/workflows/uat.yaml
+        with:
+          env: 'UAT'
 
+        
+    
