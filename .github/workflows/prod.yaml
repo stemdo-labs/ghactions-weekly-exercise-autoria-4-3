@@ -14,11 +14,11 @@ jobs:
   
       - name: Obtener version de la aplicación
         id: version
-        uses: ./.github/actions/action.yml
+        uses: ./.github/actions/action.yml@dev
         with:
           env: 'production'     
       
       - name: ci-cd
-        uses: ./.github/actions/ci-cd.yml
+        uses: ./.github/workflows/ci-cd.yml@dev
         with:
           env: 'production'  

@@ -1,15 +1,16 @@
 name: Obtener versión
+description: Da el nombre de la versión actual, con snapshot si es para dev
 
 inputs:
-      env:  
-        description: 'In which environment must this be deployed'
-        required: true
-        default: 'uat'
+  env:  
+    description: 'In which environment must this be deployed'
+    required: true
+    default: 'uat'
 
 outputs:
-      version:
-        description: 'Versión de la aplicación'
-        value: ${{ steps.version_name.outputs.version }}
+  version:
+    description: 'Versión de la aplicación'
+    value: ${{ steps.version_name.outputs.version }}
 
 runs:
   using: 'composite'

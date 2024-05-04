@@ -1,6 +1,7 @@
-name: CI
+name: CI-CD
+
 on:
-  workflow-call:
+  workflow_dispatch:
     inputs:
       env:  
         description: 'In which environment must this be deployed'
