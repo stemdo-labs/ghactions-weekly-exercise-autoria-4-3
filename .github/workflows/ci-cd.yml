@@ -1,4 +1,4 @@
-name: CI-CD
+name: CI Reusable
 
 on:
   workflow_call:
@@ -57,18 +57,3 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: ${{ secrets.DOCKERHUB_USER }}/gh_entregable:${{ steps.version.outputs.version }}
-
-  deployment:
-    runs-on: ubuntu-latest
-    environment: ${{ inputs.env }}
-    steps:
-
-      - name: download image
-        run: ${{ secrets.DOCKERHUB_USER }}/gh_entregable:${{ steps.version.outputs.version }}
-
-      - name: docker run
-        run: docker run -d -p 8080:80 ${{ secrets.DOCKERHUB_USER }}/gh_entregable:${{ steps.version.outputs.version }}
-
-      - name: curl
-        run: curl http://localhost:8080
-    if: github.event_name == 'pull_request'
