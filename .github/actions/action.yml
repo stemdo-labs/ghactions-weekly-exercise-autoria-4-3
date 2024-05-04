@@ -17,12 +17,10 @@ on:
 
 runs:
   using: 'composite'
-  
   steps:
-
     - name: Checkout
       uses: actions/checkout@v2
-      
+
     - name: set version name
       id: version_name
       run: |
