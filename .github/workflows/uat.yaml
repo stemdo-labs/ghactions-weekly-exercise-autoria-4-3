@@ -15,9 +15,7 @@ jobs:
         with:
           env: 'UAT'     
     
-      - name: build-image
-        uses: ./.github/workflows/ci-cd.yml
-        with:
-          env: 'UAT'    
-    
+  call_ci_cd_workflow:
+    name: Call CI/CD Workflow
+    uses: ./.github/workflows/ci-cd.yml
 
