@@ -14,6 +14,9 @@ jobs:
     runs-on: ubuntu-latest
     environment: ${{ inputs.env }}
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        
       - name: Obtener version de la aplicación
         id: version
         uses: ./.github/actions/
