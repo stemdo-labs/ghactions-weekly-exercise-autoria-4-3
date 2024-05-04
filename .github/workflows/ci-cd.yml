@@ -48,7 +48,7 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ github.event.inputs.docker_username }}/gh_entregable:${{ github.event.inputs.version_name }}
+          tags: ${{ secrets.DOCKERHUB_USER }}/gh_entregable:${{ github.event.inputs.version_name }}
 
   deployment:
     runs-on: ubuntu-latest
@@ -57,10 +57,10 @@ jobs:
     steps:
 
       - name: download image
-        run: ${{ github.event.inputs.docker_username  }}/gh_entregable:${{ github.event.inputs.version_name  }}
+        run: ${{ secrets.DOCKERHUB_USER  }}/gh_entregable:${{ github.event.inputs.version_name  }}
 
       - name: docker run
-        run: docker run -d -p 8080:80 ${{ github.event.inputs.docker_username  }}/gh_entregable:${{ github.event.inputs.version_name  }}
+        run: docker run -d -p 8080:80 ${{ secrets.DOCKERHUB_USER  }}/gh_entregable:${{ github.event.inputs.version_name  }}
 
       - name: curl
         run: curl http://localhost:8080
