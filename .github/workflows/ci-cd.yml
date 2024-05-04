@@ -71,3 +71,4 @@ jobs:
 
       - name: curl
         run: curl http://localhost:8080
+    if: github.event_name == 'pull_request'
