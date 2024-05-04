@@ -7,6 +7,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    environment: production
     steps:
 
       - name: Checkout
@@ -15,10 +16,10 @@ jobs:
       - name: Obtener version de la aplicación
         id: version
         uses: ./.github/actions/action.yml@dev
-        with:
-          env: production     
+        #with:
+         # env: production     
       
       - name: ci-cd
         uses: ./.github/workflows/ci-cd.yml@dev
-        with:
-          env: production  
+        #with:
+          #env: production  
