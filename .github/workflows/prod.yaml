@@ -15,7 +15,7 @@ jobs:
   
       - name: Obtener version de la aplicación
         id: version
-        uses: ./.github/actions/
+        uses: ./.github/actions/get-version/
         with:
          env: 'production'    
       

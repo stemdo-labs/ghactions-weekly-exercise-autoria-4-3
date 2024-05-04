@@ -1,6 +1,6 @@
 on:
   push:
-    branches: dev
+    branches: [dev]
 
 jobs:
   build:
@@ -11,7 +11,7 @@ jobs:
 
       - name: Obtener version de la aplicación
         id: version_name
-        uses: ./.github/actions/
+        uses: ./.github/actions/get-version/
         with:
           env: 'UAT'     
     
