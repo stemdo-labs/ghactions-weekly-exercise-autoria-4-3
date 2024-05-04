@@ -20,7 +20,7 @@ jobs:
          env: 'production'    
       
   call_workflow:
-    uses: ./.github/workflows/ci-reusable.yml
+    uses: ./.github/workflows/cd-reusable.yml
     with:
       env: 'production'
     secrets: inherit
