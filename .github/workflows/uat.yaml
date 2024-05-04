@@ -16,7 +16,7 @@ jobs:
           env: 'UAT'     
     
   call_workflow:
-    uses: ./.github/workflows/ci-cd.yml
+    uses: ./.github/workflows/cd-reusable.yml
     with:
       env: 'UAT'
     secrets: inherit
