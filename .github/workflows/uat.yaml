@@ -15,7 +15,8 @@ jobs:
         with:
           env: 'UAT'
           
-  workflow_call:
+  call-ci-cd:
+    name: Call reusable workflow
     uses: ./.github/workflows/ci-cd.yml
     
 
