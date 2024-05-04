@@ -15,7 +15,7 @@ jobs:
         with:
           env: 'UAT'
           
-  call_workflow:
-    uses: stemdo-labs/ghactions-weekly-exercise-4-3/.github/actions/ci-cd.ym
+  call-workflow:
+    uses: ./.github/actions/ci-cd.yml
     
 
