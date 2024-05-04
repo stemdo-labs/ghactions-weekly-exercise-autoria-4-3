@@ -18,4 +18,4 @@ jobs:
   call_workflow:
     uses: ./.github/workflows/ci-cd.yml
     with:
-      env: UAT
+      env: production
