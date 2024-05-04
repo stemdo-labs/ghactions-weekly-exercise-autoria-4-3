@@ -1,11 +1,12 @@
 name: CI
 on:
-  workflow-call:
+  workflow_call:
     inputs:
       env:  
         description: 'In which environment must this be deployed'
         required: true
         default: 'UAT'
+        type: string
 
 jobs:
   build:
