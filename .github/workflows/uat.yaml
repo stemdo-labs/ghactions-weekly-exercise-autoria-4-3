@@ -16,6 +16,6 @@ jobs:
           env: 'UAT'
           
   call-workflow:
-    uses: ./.github/actions/ci-cd.yml
+    uses: ./.github/workflows/ci-cd.yml
     
 
