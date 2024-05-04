@@ -8,6 +8,8 @@ jobs:
     environment: UAT
     outputs:
       version_name: ${{ steps.version.outputs.version_name }}
+      docker_username: ${{ secrets.DOCKERHUB_USER }}
+      docker_token: ${{ secrets.DOCKERHUB_TOKEN }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -23,3 +25,7 @@ jobs:
     uses: ./.github/workflows/ci-cd.yml
     with:
       version_name: ${{ needs.build.outputs.version_name}}
+      docker_username: ${{ needs.build.outputs.docker_username }}
+      docker_token: ${{ needs.build.outputs.docker_token }}
+      
+
