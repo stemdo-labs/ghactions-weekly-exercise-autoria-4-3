@@ -16,9 +16,9 @@ jobs:
         id: version
         uses: ./.github/actions/action.yml@dev
         with:
-          env: 'production'     
+          env: production     
       
       - name: ci-cd
         uses: ./.github/workflows/ci-cd.yml@dev
         with:
-          env: 'production'  
+          env: production  
