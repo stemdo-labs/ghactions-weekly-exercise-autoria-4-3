@@ -7,6 +7,11 @@ inputs:
     required: true
     default: UAT
 
+outputs:
+  version:
+    description: 'Versión de la aplicación'
+    value: ${{ steps.version_name.outputs.version }}
+
 runs:
   using: 'composite'
   steps:
@@ -14,11 +19,11 @@ runs:
       uses: actions/checkout@v2
 
     - name: set version name
-      id: set_version
+      id: version_name
       run: |
         output=$(bash ./.github/actions/get-version.sh)
         if [ "${{ inputs.env }}" == 'UAT' ]; then
           output+="-SNAPSHOT"
         fi
-        echo "::set-output name=version_name::$output"
+        echo "::set-output name=version::$output"
       shell: bash  # Agrega esta línea para especificar el shell
