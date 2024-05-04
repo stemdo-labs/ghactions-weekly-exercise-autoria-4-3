@@ -3,7 +3,7 @@ on:
     branches: dev
 
 jobs:
-  get-version:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
