@@ -23,9 +23,9 @@ jobs:
         with:
           env: 'uat'         
 
-      - name: Print version
-        run: |
-          echo "Version: ${{ steps.version.outputs.version }}"
+      # - name: Print version
+      #   run: |
+      #     echo "Version: ${{ steps.version.outputs.version }}"
         
       - name: Install dependencies
         run: npm install 
@@ -39,11 +39,6 @@ jobs:
             echo "Test pasados adecuadamente"   
         if: ${{ inputs.env == 'production'}} 
         
-      - name: test docker vars
-        run: |
-          echo ${{ secrets.DOCKERHUB_USER }}
-          echo ${{ secrets.DOCKERHUB_TOKEN }}
-
       - name: Login en Docker Hub
         uses: docker/login-action@v3
         with:
