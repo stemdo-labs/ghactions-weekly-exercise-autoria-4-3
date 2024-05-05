@@ -21,7 +21,7 @@ jobs:
         id: version
         uses: ./.github/actions/get-version/
         with:
-          env: 'uat'         
+          target: 'UAT'         
 
       # - name: Print version
       #   run: |
@@ -42,6 +42,7 @@ jobs:
       - name: Login en Docker Hub
         uses: docker/login-action@v3
         with:
+          target: 'UAT'
           username: ${{ secrets.DOCKERHUB_USER }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
