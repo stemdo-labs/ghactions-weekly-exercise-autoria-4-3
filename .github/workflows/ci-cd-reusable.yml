@@ -27,36 +27,19 @@ jobs:
         with:
           target: ${{ inputs.target }}         
 
-      # - name: Print version
-      #   run: |
-      #     echo "Version: ${{ steps.version.outputs.version }}"
-
-      # - name: Node set-up
-      #   uses: actions/setup-node@v2
-      #   with:
-      #     node-version: '20'
-        
-      # - name: Install dependencies
-      #   run: npm install 
-
-      # - name: Construir aplicación de angular
-      #   run: npm run build --prod
-
       - name: Hacer tests
         run: |
             sleep 5
             echo "Test pasados adecuadamente"   
         if: ${{ inputs.env == 'production'}} 
-        
-      - name: Login en Docker Hub
-        uses: docker/login-action@v3
-        with:
-          username: ${{ secrets.DOCKERHUB_USER }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Docker Build y Push
         id: docker-build-push
         uses: ./.github/actions/docker-build-push/
+        with:
+          username: ${{ secrets.DOCKERHUB_USER }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          version: ${{ steps.version.outputs.version }}
         
   deployment:
     needs: build
@@ -70,7 +53,7 @@ jobs:
         id: version
         uses: ./.github/actions/get-version/
         with:
-          env: 'production'
+          env: ${{ inputs.target }}
 
       - name: download image
         run: docker pull ${{ secrets.DOCKERHUB_USER }}/gh_entregable:${{ steps.version.outputs.version }}
