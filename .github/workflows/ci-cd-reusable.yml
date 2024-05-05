@@ -62,4 +62,8 @@ jobs:
         run: docker run -d -p 8080:8080 ${{ secrets.DOCKERHUB_USER }}/gh_entregable:${{ steps.version.outputs.version }}
 
       - name: curl
-        run: curl http://localhost:8080
+        run: |
+          curl http://localhost:8080 >> result.html
+          cat result.html
+
+      
