@@ -1,0 +1,15 @@
+name: Build Docker y Push
+inputs:
+  username:
+    required: true
+  vesion:
+    required: true
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Build - Push
+      shell: bash
+      run: |
+        docker build -t ${{ secrets.DOCKERHUB_USER }}/gh_entregable:${{ steps.version.outputs.version }} .
+        docker push ${{ secrets.DOCKERHUB_USER }}/gh_entregable:${{ steps.version.outputs.version }}
