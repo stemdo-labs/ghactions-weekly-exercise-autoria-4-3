@@ -15,14 +15,8 @@ jobs:
         with:
           env: 'UAT'     
     
-  call_workflow-ci:
-    uses: ./.github/workflows/ci-reusable.yml
-    with:
-      env: 'UAT'
-    secrets: inherit
-
-  call_workflow-cd:
-    uses: ./.github/workflows/cd-reusable.yml
+  call_workflow-ci-cd:
+    uses: ./.github/workflows/ci-cd-reusable.yml
     with:
       env: 'UAT'
     secrets: inherit
