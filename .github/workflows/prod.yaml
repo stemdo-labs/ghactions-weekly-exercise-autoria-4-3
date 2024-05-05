@@ -22,5 +22,5 @@ jobs:
   call_workflow-ci-cd:
     uses: ./.github/workflows/ci-cd-reusable.yml
     with:
-      env: 'production'
+      target: 'production'
     secrets: inherit
