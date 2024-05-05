@@ -22,7 +22,8 @@ runs:
       id: version_name
       run: |
         output=$(bash ./.github/actions/get-version/get-version.sh)
-        if [[ "${{ inputs.target }}" == "UAT" ]]; then
+        if [ "${{ inputs.target }}" == "UAT" ]
+        then
           output="${output}-SNAPSHOT"
         fi
         echo "::set-output name=version::${output}"
