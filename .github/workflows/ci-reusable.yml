@@ -1,4 +1,4 @@
-name: CI Reusable
+name: CI/CD Reusable
 
 on:
   workflow_call:
