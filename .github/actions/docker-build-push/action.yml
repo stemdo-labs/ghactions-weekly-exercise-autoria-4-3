@@ -13,3 +13,5 @@ runs:
       run: |
         docker build -t ${{ secrets.DOCKERHUB_USER }}/gh_entregable:${{ steps.version.outputs.version }} .
         docker push ${{ secrets.DOCKERHUB_USER }}/gh_entregable:${{ steps.version.outputs.version }}
+      with: 
+        env: ${{ inputs.env }}
