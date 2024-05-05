@@ -25,7 +25,7 @@ jobs:
         id: version
         uses: ./.github/actions/get-version/
         with:
-          target: 'UAT'         
+          target: ${{ inputs.target }}         
 
       # - name: Print version
       #   run: |
