@@ -8,6 +8,10 @@ on:
         required: true
         default: 'UAT'
         type: string
+      env:
+        type: string
+        default: 'UAT'
+        required: true
 
 jobs:
   build:
