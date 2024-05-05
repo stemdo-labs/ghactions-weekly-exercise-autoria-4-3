@@ -53,7 +53,7 @@ jobs:
         id: version
         uses: ./.github/actions/get-version/
         with:
-          env: ${{ inputs.target }}
+          target: ${{ inputs.target }}
 
       - name: download image
         run: docker pull ${{ secrets.DOCKERHUB_USER }}/gh_entregable:${{ steps.version.outputs.version }}
