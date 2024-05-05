@@ -54,14 +54,10 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USER }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Construir imagen de Docker y subirla
-        uses: docker/build-push-action@v3
-        with:
-          context: .
-          file: ./Dockerfile
-          push: true
-          tags: ${{ secrets.DOCKERHUB_USER }}/gh_entregable:${{ steps.version.outputs.version }}
-
+      - name: Docker Build y Push
+        id: docker-build-push
+        uses: ./.github/actions/docker-build-push/
+        
   deployment:
     needs: build
     runs-on: ubuntu-latest
