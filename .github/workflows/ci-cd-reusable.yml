@@ -30,6 +30,11 @@ jobs:
       # - name: Print version
       #   run: |
       #     echo "Version: ${{ steps.version.outputs.version }}"
+
+      - name: Node set-up
+        uses: actions/setup-node@v2
+        with:
+          node-version: '20'
         
       - name: Install dependencies
         run: npm install 
