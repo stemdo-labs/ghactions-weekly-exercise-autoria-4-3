@@ -3,7 +3,7 @@ name: CI/CD Reusable
 on:
   workflow_call:
     inputs:
-      env:  
+      target:  
         description: 'In which environment must this be deployed'
         required: true
         default: 'UAT'
