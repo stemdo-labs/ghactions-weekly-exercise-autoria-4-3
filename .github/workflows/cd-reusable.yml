@@ -1,6 +1,12 @@
 name: CD Reusable
 
 on:
+
+  workflow_run:
+    workflows: ["CI Reusable"]
+    types:
+      - completed
+
   workflow_call:
     inputs:
       env:  
