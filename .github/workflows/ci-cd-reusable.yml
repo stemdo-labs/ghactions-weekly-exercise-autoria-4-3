@@ -6,11 +6,11 @@ on:
       target:  
         description: 'In which environment must this be deployed'
         required: true
-        default: "UAT"
+        default: 'UAT'
         type: string
       env:
         type: string
-        default: "UAT"
+        default: 'UAT'
         required: true
 
 jobs:
@@ -30,8 +30,8 @@ jobs:
       - name: Hacer tests
         run: |
             sleep 5
-            echo "Test pasados adecuadamente"   
-        if: ${{ inputs.env == "production" }} 
+            echo 'Test pasados adecuadamente'   
+        if: ${{ inputs.env == 'production' }} 
 
       - name: Docker Build y Push
         id: docker-build-push
