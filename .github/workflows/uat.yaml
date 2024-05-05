@@ -13,7 +13,7 @@ jobs:
         id: version_name
         uses: ./.github/actions/get-version/
         with:
-          env: 'UAT'     
+          target: 'UAT'     
     
   call_workflow-ci-cd:
     uses: ./.github/workflows/ci-cd-reusable.yml
