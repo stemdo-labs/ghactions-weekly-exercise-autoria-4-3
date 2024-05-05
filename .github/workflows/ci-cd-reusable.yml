@@ -6,17 +6,17 @@ on:
       target:  
         description: 'In which environment must this be deployed'
         required: true
-        default: 'UAT'
+        default: "UAT"
         type: string
       env:
         type: string
-        default: 'UAT'
+        default: "UAT"
         required: true
 
 jobs:
-  build:
+  build-and-push:
     runs-on: ubuntu-latest
-    #environment: ${{ inputs.env }}
+    environment: ${{ inputs.env }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -31,7 +31,7 @@ jobs:
         run: |
             sleep 5
             echo "Test pasados adecuadamente"   
-        if: ${{ inputs.env == 'production'}} 
+        if: ${{ inputs.env == "production" }} 
 
       - name: Docker Build y Push
         id: docker-build-push
@@ -42,7 +42,7 @@ jobs:
           version: ${{ steps.version.outputs.version }}
         
   deployment:
-    needs: build
+    needs: build-and-push
     runs-on: ubuntu-latest
     environment: ${{ inputs.env }}
     steps:
@@ -65,5 +65,3 @@ jobs:
         run: |
           curl http://localhost:8080 >> result.html
           cat result.html
-
-      
