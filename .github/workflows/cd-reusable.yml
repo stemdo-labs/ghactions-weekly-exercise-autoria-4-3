@@ -8,6 +8,11 @@ on:
         required: true
         default: 'production'
         type: string
+        
+  workflow_run:
+    workflows: ["ci-reusable.yml"]
+    types:
+      - completed
 
 jobs: 
   deployment:
