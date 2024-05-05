@@ -59,6 +59,7 @@ jobs:
           tags: ${{ secrets.DOCKERHUB_USER }}/gh_entregable:${{ steps.version.outputs.version }}
 
   deployment:
+    needs: build
     runs-on: ubuntu-latest
     environment: ${{ inputs.env }}
     steps:
