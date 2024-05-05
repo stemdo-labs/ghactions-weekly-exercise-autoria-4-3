@@ -10,7 +10,7 @@ on:
         type: string
         
   workflow_run:
-    workflows: ["ci-reusable.yml"]
+    workflows: ["CI Reusable"]
     types:
       - completed
 
