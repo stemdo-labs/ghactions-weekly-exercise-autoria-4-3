@@ -2,19 +2,7 @@ on:
   push:
     branches: [dev]
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: Obtener version de la aplicación
-        id: version_name
-        uses: ./.github/actions/get-version/
-        with:
-          target: 'UAT'     
-    
+jobs: 
   call_workflow-ci-cd:
     uses: ./.github/workflows/ci-cd-reusable.yml
     with:
