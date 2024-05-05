@@ -5,7 +5,7 @@ inputs:
   target:  
     description: 'In which environment must this be deployed'
     required: true
-    default: UAT
+    default: 'UAT'
 
 outputs:
   version:
