@@ -1,0 +1,30 @@
+name: Obtener versión
+description: Da el nombre de la versión actual, con snapshot si es para dev
+
+inputs:
+  target:  
+    description: 'In which environment must this be deployed'
+    required: true
+    default: 'UAT'
+
+outputs:
+  version:
+    description: 'Versión de la aplicación'
+    value: ${{ steps.version_name.outputs.version }}
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: set version name
+      id: version_name
+      run: |
+        output=$(bash ./.github/actions/get-version/get-version.sh)
+        if [ "${{ inputs.target }}" == "UAT" ]
+        then
+          output="${output}-SNAPSHOT"
+        fi
+        echo "::set-output name=version::${output}"
+      shell: bash

@@ -1,0 +1,13 @@
+on:
+  pull_request:
+    types: [opened, reopened]
+    branches: 
+      - main
+    
+jobs:     
+  call_workflow-ci-cd:
+    uses: ./.github/workflows/ci-cd-reusable.yml
+    with:
+      target: 'production'
+      env: 'production'
+    secrets: inherit

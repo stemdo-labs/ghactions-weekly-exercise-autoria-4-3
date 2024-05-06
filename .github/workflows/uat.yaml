@@ -1,0 +1,11 @@
+on:
+  push:
+    branches: [dev]
+
+jobs: 
+  call_workflow-ci-cd:
+    uses: ./.github/workflows/ci-cd-reusable.yml
+    with:
+      target: 'UAT'
+      env: 'UAT'
+    secrets: inherit
