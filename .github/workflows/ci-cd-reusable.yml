@@ -1,0 +1,67 @@
+name: CI/CD Reusable
+
+on:
+  workflow_call:
+    inputs:
+      target:  
+        description: 'In which environment must this be deployed'
+        required: true
+        default: 'UAT'
+        type: string
+      env:
+        type: string
+        default: 'UAT'
+        required: true
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.env }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Obtener version de la aplicación
+        id: version
+        uses: ./.github/actions/get-version/
+        with:
+          target: ${{ inputs.target }}         
+
+      - name: Hacer tests
+        run: |
+            sleep 5
+            echo 'Test pasados adecuadamente'   
+        if: ${{ inputs.env == 'production' }} 
+
+      - name: Docker Build y Push
+        id: docker-build-push
+        uses: ./.github/actions/docker-build-push/
+        with:
+          username: ${{ secrets.DOCKERHUB_USER }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          version: ${{ steps.version.outputs.version }}
+        
+  deployment:
+    needs: build-and-push
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.env }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        
+      - name: Obtener version de la aplicación
+        id: version
+        uses: ./.github/actions/get-version/
+        with:
+          target: ${{ inputs.target }}
+
+      - name: download image
+        run: docker pull ${{ secrets.DOCKERHUB_USER }}/gh_entregable:${{ steps.version.outputs.version }}
+
+      - name: docker run
+        run: docker run -d -p 8080:8080 ${{ secrets.DOCKERHUB_USER }}/gh_entregable:${{ steps.version.outputs.version }}
+
+      - name: curl
+        run: |
+          curl http://localhost:8080 >> result.html
+          cat result.html
