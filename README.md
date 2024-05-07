@@ -1,38 +1,16 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/2Gbn4SLJ)
-## Ejercicios de Github Actions  para iniciarse en el Mundo de DevOps
+# Control de Autoría Github Actions
 
-¡Bienvenido/a al ejercicio semanal de Github Actions para iniciarse en el mundo de DevOps!
+## Aclaración
 
-Este repositorio contiene un ejercicio diseñado para ayudarte a familiarizarte con __Github Actions__ y el __CI/CD__.
+Vais a utilizar el repositorio del grupo para hacer este ejercicio pero es totalmente individual cada persona debe crear su propia solución. Tiene el mismo objetivo que los test de cada semana.
 
-## Objetivos
+Podéis usar internet sin problemas.
 
-El propósito principal de este ejercicio es _proporcionarte una introducción práctica a los conceptos de Github Actions_ que son esenciales para cualquier persona interesada en trabajar en el área de DevOps. Al completar estos ejercicios, esperamos que adquieras experiencia práctica con:
+## Ejercicio
 
-- Workflows
-- Actions/ Custom Actions
-- Workflows reusables
-- Secrets y entornos
+Crear un nuevo workflow reutilizable de CI que utilice un action (preferiblemente un custom action) para cargar la imagen en el Artifactory de Github. El ID del artefacto debe generarse de forma aleatoria. Este workflow reutilizable de CI tendrá un output que indicará el ID del artefacto subido. Al llamar al CD, tendremos que pasarle ese ID para que descargue y despliegue el artefacto.
 
-## Estructura del Repositorio
 
-En este repositorio encontraréis un proyecto básico de _Angular_. Para el cual tendréis que elaborar los workflows necesarios para la __Integración Continua__ y el __Despliegue Continuo (CI/CD)__.
+Esta seria una opcion posible para generar el ID de forma automática, podéis hacer uso de la que prefiráis.
 
-El workflow de __CI__ será el encargado de _realizar el build de la aplicación angular_, construir la imagen y subirla al registry. (Dockerhub)
-
-El workflow de __CD__ será el encargado de _bajar esa imagen y realizar el despliegue_. (Este despliegue lo simularemos haciendo un curl al html de la aplicación que sirve el nginx)
-
-La rama main/master será de desplegar en el entorno de production y la rama de development la usaremos para despliegues e integraciones continuas en uat.
-
-### Requerimientos
-
-- Uso de distintos triggers
-- Uso de reusables (para entender cómo se pueden reusar workflows ya existentes, de esta manera no repetimos código ya escrito anteriormente.)
-- Uso de custom actions (composite)
-- Uso de variables y secrets de environments (en un entorno real, vas a encontrarte con distintas variables por entorno)
-- Job que simulen la ejecución de Test de Cobertura de Código (en un entorno profesional vas a encontrarte con test de código, nosotros tenemos que encargarnos de que se lleven a cabo) Estos jobs se ejecutarán solo si estamos en el entorno "production", no en el de "uat".
-- Uso de aprobadores por entornos. (Investigad)
-
-## Contribución
-
-¡Tus contribuciones son bienvenidas! Si tienes ideas para nuevos ejercicios o mejoras para los existentes, no dudes en abrir un issue o abrir un pull request.
+    IMAGE_TAG=$(date '+%Y%m%d%H%M%S')
